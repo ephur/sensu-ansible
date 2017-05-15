@@ -3,6 +3,13 @@
 
   - include_vars: "{{ ansible_distribution }}.yml"
 
+  - name: Deploy Sensu /etc/defaults
+    template:
+      dest: "/etc/default/sensu"
+      owner: "root"
+      group: "root"
+      src: "sensu-etc-default.j2"
+
   - name: Deploy Sensu server API configuration
     template:
       dest: "{{ sensu_config_path }}/conf.d/api.json"
